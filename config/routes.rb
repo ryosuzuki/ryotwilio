@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'messages/create'
+
+  post 'messages/send_message'
+
+  get '/messages', to: 'messages#create'
+
+  post 'messages/send'
+
   get 'users/signup'
 
   get 'users/login'
