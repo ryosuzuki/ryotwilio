@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  get 'user/signup'
+
+  get 'user/login'
+
   get 'admin/index'
+
+  post 'user/create'
 
   get '/admin', to: 'admin#index'
   # The priority is based upon order of creation: first created -> highest priority.
