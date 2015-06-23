@@ -1,4 +1,7 @@
-<%= form_for(@user, method: :post,
+<% @user.errors.full_messages.each do |msg| %>
+  <p><%= msg %></p>
+<% end %>
+<%= form_for(:user, method: :post,
     url: {action: :create}) do |form| %>
   <%= form.text_field(:username) %>
   <%= form.text_field(:password) %>
