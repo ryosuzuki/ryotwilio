@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  get 'user/signup'
+  get 'users/signup'
 
-  get 'user/login'
+  get 'users/login'
 
   get 'admin/index'
 
-  post 'user/create'
+  post 'users/create'
 
+  post 'users/post_login'
+  
   get '/admin', to: 'admin#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
