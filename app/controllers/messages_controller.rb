@@ -12,19 +12,16 @@ class MessagesController < ApplicationController
   def send_message
   	@message = Message.new(send_params(params[:message]))
   	begin
-			@@client.account.messages.create(:body => @message[:body], :to => @message[:to], :from => '+13235270659')
-			flash.notice = "Message sent!"
-			redirect_to(:action => :create)
+			@message = @@client.account.messages.create(:body => @message[:body], :to => @message[:to], :from => '+13235270659')
 		rescue Twilio::REST::RequestError => e
 			flash.now.alert = "Message could not be sent."
 			render "create"
+			return
 		end
-  	# if @message.save then
-  	# 	flash.notice("Message sent!")
-  	# 	redirect_to(:action => :create)
-  	# else
-  	# 	render(:action => :create)
-  	# end
+		@message[:from] = '+13235270659'
+		@message.save
+		flash.notice = "Message sent!"
+		redirect_to(:action => :create)
   end
 
   private
